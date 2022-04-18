@@ -1,11 +1,16 @@
 package ru.Chayka;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class SpringStarter {
     public static void main(String[] args) {
-        SpringApplication.run(SpringStarter.class, args);
+        new SpringApplicationBuilder(SpringStarter.class)
+                .web(WebApplicationType.NONE)
+                .run(args);
+        //SpringApplication.run(SpringStarter.class, args);
     }
 }

@@ -1,5 +1,6 @@
 package ru.Chayka;
 
+import com.codeborne.selenide.Configuration;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -18,6 +19,7 @@ public class AppConfig {
 
     private AppConfig(@Value("${baseUrl}") String baseUrl){
         this.baseUrl = baseUrl;
+        Configuration.baseUrl = baseUrl;
         uniqueInstance = this;
     }
 }
