@@ -1,4 +1,4 @@
-package ru.Chayka;
+package ru.Chayka.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum AppLanguage {
-    DEUTSCH("Deutsch", "DE"),
     ENGLISH("English", "EN"),
+    DEUTSCH("Deutsch", "DE"),
     POLISH("Polski", "PL"),
     CZECH("Česky", "CS");
 
