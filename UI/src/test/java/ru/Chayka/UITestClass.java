@@ -1,7 +1,6 @@
 package ru.Chayka;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -12,7 +11,8 @@ import ru.Chayka.commons.Browser;
 import ru.Chayka.commons.Platform;
 import ru.Chayka.enums.ProductType;
 import ru.Chayka.pageobjects.MainPage;
-import ru.Chayka.pageobjects.MainPageBrowser;
+import ru.Chayka.pageobjects.MainPageDesktop;
+import ru.Chayka.productdto.ProductWithOptions;
 
 import java.util.List;
 
@@ -32,10 +32,19 @@ public class UITestClass extends AbstractTestNGSpringContextTests {
         Configuration.timeout = 4000;
     }
 
-    @BeforeMethod
+    /*@BeforeMethod
     public void beforeMethod() {
         Selenide.clearBrowserCookies();
-    }
+        Selenide.refresh();
+        //Selenide.clearBrowserLocalStorage();
+    }*/
+
+    /*@AfterMethod
+    public void afterMethod() {
+        Selenide.clearBrowserCookies();
+        Selenide.refresh();
+        //Selenide.clearBrowserLocalStorage();
+    }*/
 
     @BeforeGroups({"Google Chrome Tests", "Opera Tests"})
     public void beforeGroups(){
@@ -54,10 +63,10 @@ public class UITestClass extends AbstractTestNGSpringContextTests {
         open("");
         MainPage mainPage;
         if (platform == Platform.WINDOWS) {
-            mainPage = MainPageBrowser.switchToBrowserVer();
+            mainPage = MainPageDesktop.switchToBrowserVer();
         } else {
             //mainPage = MainPageMobile.switchToMobileVer();
-            mainPage = MainPageBrowser.switchToBrowserVer();
+            mainPage = MainPageDesktop.switchToBrowserVer();
         }
         return mainPage;
     }
@@ -84,8 +93,8 @@ public class UITestClass extends AbstractTestNGSpringContextTests {
     public void debugTest() {
         open("");
 
-        MainPageBrowser mainPageBrowser = new MainPageBrowser();
-        mainPageBrowser.closeWeHaveJustClosedDoc();
+        MainPageDesktop mainPageDesktop = new MainPageDesktop();
+        mainPageDesktop.closeWeHaveJustClosedDoc();
         /*mainPageBrowser.switchLanguageNormal(AppLanguage.CZECH);
         mainPageBrowser.switchLanguageNormal(AppLanguage.ENGLISH);
         mainPageBrowser.switchLanguageNormal(AppLanguage.DEUTSCH);
@@ -103,7 +112,7 @@ public class UITestClass extends AbstractTestNGSpringContextTests {
                 .productType(ProductType.AMERICAN_BURGER)
                 .toppingOptional("Ei-Patty")
                 .sideDish("Pommes + Fanta")
-                .totalCost(12.29)
+                .totalPrice(12.29)
                 .build();
         Assert.assertEquals(1, 1);
 

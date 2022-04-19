@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ProductType {
+    OFFERS("Angebote"),
     AMERICAN_BURGER("American Burger"),
     AMERICAN_BIG_BURGER("American Big Burger"),
     BURGER("Burger"),
@@ -18,7 +19,11 @@ public enum ProductType {
     HOT_DOGS("Hot Dogs"),
     WRAPS("Wraps"),
     NACHOS("Nachos"),
+    PIZZA_BREAD("Pizzabrot"),
     PIZZA("Pizza"),
+    PASTA("Pasta"),
+    DESSERT("Dessert"),
+    SALAD("Salate"),
     DRINKS("Getränke");
 
     private final String text;

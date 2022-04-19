@@ -8,11 +8,10 @@ import ru.Chayka.enums.AppLanguage;
 @Getter
 @AllArgsConstructor
 public enum TellUsYourAddressBlockLabel {
-    TITLE("Please tell us your address", "Lieferadresse","",""),
     DELIVERY("Delivery", "Liefern","Dostawa","Dodávka"),
     PICKUP("Pickup", "Abholen","Odbiór", "Recepce"),
-    CANCEL("Cancel", "Abbrechen","",""),
-    CONFIRM("Confirm", "Bestätigen","","");
+    CANCEL("Cancel", "Abbrechen","Anuluj","Zrušení"),
+    CONFIRM("Confirm", "Bestätigen","Potwierdź","Potvrdit");
 
     private final String textEN;
     private final String textDE;

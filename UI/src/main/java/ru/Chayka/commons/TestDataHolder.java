@@ -11,12 +11,6 @@ import java.util.List;
  * <br>Абстрактный класс, для каждого сервиса используется отдельный класс-наследник
  */
 public abstract class TestDataHolder {
-    protected final Logger logger;
-
-    protected TestDataHolder(Logger logger){
-        this.logger = logger;
-    }
-
     /**
      * Метод преобразует тестовые данные для группы тест-кейсов в двумерный массив объектов,
      * который может принимать тест TestNG
@@ -38,7 +32,6 @@ public abstract class TestDataHolder {
             }
             return testDataObjects.toArray(new Object[0][]);
         } catch (IllegalAccessException illegalAccessException){
-            logger.error(illegalAccessException.getMessage());
             //TODO
             throw new RuntimeException(illegalAccessException.getMessage());
         }
