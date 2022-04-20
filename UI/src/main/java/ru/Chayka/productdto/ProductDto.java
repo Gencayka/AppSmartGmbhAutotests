@@ -9,6 +9,7 @@ public interface ProductDto {
     ProductType getProductType();
     String getPositionName();
     Double getTotalPrice();
+    boolean isDiscounted();
     String getOption(ProductOption productOption);
     List<String> getListOfOptions(ProductOption productOption);
 }

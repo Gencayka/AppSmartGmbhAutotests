@@ -34,18 +34,14 @@ public class UIChromeTests extends UITests {
                                         Browser browser,
                                         AppLanguage appLanguage,
                                         List<ProductDto> products) {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         open("");
 
         MainPage mainPage = setup(platform);
 
-        mainPage.closeWeHaveJustClosedDoc();
         mainPage.switchLanguage(appLanguage);
 
         mainPage.addProductsToCart(products);
-        mainPage.checkDiscount(products, 0.9);
-
-        //closeWindow();
-        //closeWebDriver();
+        mainPage.checkDiscount(products, 0.1);
     }
 }

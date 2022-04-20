@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ProductType {
-    OFFERS("Angebote"),
+    SETS("Angebote"),
     AMERICAN_BURGER("American Burger"),
     AMERICAN_BIG_BURGER("American Big Burger"),
     BURGER("Burger"),

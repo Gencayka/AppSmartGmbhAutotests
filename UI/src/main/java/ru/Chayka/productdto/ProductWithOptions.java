@@ -14,6 +14,8 @@ public class ProductWithOptions implements ProductDto{
     @NonNull ProductType productType;
     @NonNull String positionName;
     @NonNull Double totalPrice;
+    @Builder.Default
+    boolean isDiscounted = true;
     String size;
     String toppingRequired;
     @Singular("toppingOptional")

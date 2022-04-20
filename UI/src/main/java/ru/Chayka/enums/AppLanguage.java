@@ -13,13 +13,13 @@ public enum AppLanguage {
 
     private final String fullName;
     private final String shortName;
-    private final String normalButtonName;
+    private final String desktopButtonName;
     private final String mobileButtonName;
 
     AppLanguage(String fullName, String shortName){
         this.fullName = fullName;
         this.shortName = shortName;
-        this.normalButtonName = fullName + " " + shortName;
+        this.desktopButtonName = fullName + " " + shortName;
         this.mobileButtonName = shortName + " - " + fullName;
     }
 }

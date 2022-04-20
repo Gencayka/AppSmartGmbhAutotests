@@ -16,8 +16,8 @@ import java.util.List;
 
 @Component
 public class AppTestDataHolder extends TestDataHolder {
-    private final List<AppDiscountCalculationTestData> discountCalcSingleProductNoOptionsOptionsNotAddableTestData;
-    private final List<AppDiscountCalculationTestData> discountCalcSingleProductNoOptionsOptionsAddableTestData;
+    private final List<AppDiscountCalculationTestData> discountCalcSingleProductNoOptionsOptionsNotChoosableTestData;
+    private final List<AppDiscountCalculationTestData> discountCalcSingleProductNoOptionsOptionsChoosableTestData;
     private final List<AppDiscountCalculationTestData> discountCalcSingleProductWithOptionsTestData;
     private final List<AppDiscountCalculationTestData> discountCalcSeveralProductsOnePositionNoOptionsTestData;
     private final List<AppDiscountCalculationTestData> discountCalcSeveralProductsOnePositionEqualOptionsTestData;
@@ -26,8 +26,8 @@ public class AppTestDataHolder extends TestDataHolder {
     private final List<AppDiscountCalculationTestData> discountCalcSeveralProductsSeveralPositionsWithOptionsTestData;
 
     public AppTestDataHolder() {
-        discountCalcSingleProductNoOptionsOptionsNotAddableTestData = genDiscountCalcSingleProductNoOptionsOptionsNotAddableTestData();
-        discountCalcSingleProductNoOptionsOptionsAddableTestData = genDiscountCalcSingleProductNoOptionsOptionsAddableTestData();
+        discountCalcSingleProductNoOptionsOptionsNotChoosableTestData = genDiscountCalcSingleProductNoOptionsOptionsNotChoosableTestData();
+        discountCalcSingleProductNoOptionsOptionsChoosableTestData = genDiscountCalcSingleProductNoOptionsOptionsChoosableTestData();
         discountCalcSingleProductWithOptionsTestData = genDiscountCalcSingleProductWithOptionsTestData();
         discountCalcSeveralProductsOnePositionNoOptionsTestData = genDiscountCalcSeveralProductsOnePositionNoOptionsTestData();
         discountCalcSeveralProductsOnePositionEqualOptionsTestData = genDiscountCalcSeveralProductsOnePositionEqualOptionsTestData();
@@ -36,7 +36,7 @@ public class AppTestDataHolder extends TestDataHolder {
         discountCalcSeveralProductsSeveralPositionsWithOptionsTestData = genDiscountCalcSeveralProductsSeveralPositionsWithOptionsTestData();
     }
 
-    private List<AppDiscountCalculationTestData> genDiscountCalcSingleProductNoOptionsOptionsNotAddableTestData() {
+    private List<AppDiscountCalculationTestData> genDiscountCalcSingleProductNoOptionsOptionsNotChoosableTestData() {
         List<AppDiscountCalculationTestData> testData = new ArrayList<>();
         String baseTestName = "SingleProduct_NoOptions_OptionsNotAddable";
         List<ProductDto> testProducts = new ArrayList<>() {{
@@ -71,7 +71,7 @@ public class AppTestDataHolder extends TestDataHolder {
         return testData;
     }
 
-    private List<AppDiscountCalculationTestData> genDiscountCalcSingleProductNoOptionsOptionsAddableTestData() {
+    private List<AppDiscountCalculationTestData> genDiscountCalcSingleProductNoOptionsOptionsChoosableTestData() {
         List<AppDiscountCalculationTestData> testData = new ArrayList<>();
         String baseTestName = "SingleProduct_NoOptions_OptionsAddable";
         List<ProductDto> testProducts = new ArrayList<>() {{
@@ -305,6 +305,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .productType(ProductType.HOT_DOGS)
                     .positionName("Bacon Flavour Dog")
 
+                    .isDiscounted(false)
                     .totalPrice(3.99)
                     .build());
         }};
@@ -371,6 +372,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .productType(ProductType.DESSERT)
                     .positionName("Apple Cinnamon Donut")
 
+                    .isDiscounted(false)
                     .totalPrice(2.20)
                     .build());
         }};
@@ -421,8 +423,8 @@ public class AppTestDataHolder extends TestDataHolder {
     public Object[][] getDiscountCalculationSpecificBrowserTestData(Browser browser) {
         List<AppDiscountCalculationTestData> specificBrowserTestData = new ArrayList<>();
         List<AppDiscountCalculationTestData> allTestData = new ArrayList<>();
-        allTestData.addAll(discountCalcSingleProductNoOptionsOptionsNotAddableTestData);
-        allTestData.addAll(discountCalcSingleProductNoOptionsOptionsAddableTestData);
+        allTestData.addAll(discountCalcSingleProductNoOptionsOptionsNotChoosableTestData);
+        allTestData.addAll(discountCalcSingleProductNoOptionsOptionsChoosableTestData);
         allTestData.addAll(discountCalcSingleProductWithOptionsTestData);
         allTestData.addAll(discountCalcSeveralProductsOnePositionNoOptionsTestData);
         allTestData.addAll(discountCalcSeveralProductsOnePositionEqualOptionsTestData);
