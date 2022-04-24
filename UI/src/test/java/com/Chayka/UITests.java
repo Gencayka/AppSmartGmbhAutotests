@@ -33,7 +33,7 @@ public abstract class UITests extends AbstractTestNGSpringContextTests {
 
     protected MainPage setup(Platform platform) {
         MainPage mainPage;
-        if (platform == Platform.WINDOWS) {
+        if (platform == Platform.DESKTOP) {
             mainPage = MainPageDesktop.switchToDesktopVer();
         } else {
             mainPage = MainPageMobile.switchToMobileVer();

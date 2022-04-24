@@ -4,7 +4,7 @@ package com.Chayka.commons;
  * Enum holds different platforms to run the tests on
  */
 public enum Platform {
-    WINDOWS,
+    DESKTOP,
     MOBILE;
 
     public String getName(){

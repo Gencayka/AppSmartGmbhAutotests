@@ -23,13 +23,11 @@ public class AppTestDataHolder extends TestDataHolder {
     private final List<AppDiscountCalculationTestData> disCalcSingleProductSingleUnitTestData;
     private final List<AppDiscountCalculationTestData> disCalcSingleProductMultipleUnitsTestData;
     private final List<AppDiscountCalculationTestData> disCalcMultipleProductsTestData;
-    private final List<AppDiscountCalculationTestData> debugTestData;
 
     public AppTestDataHolder() {
         disCalcSingleProductSingleUnitTestData = genDisCalcSingleProductSingleUnitTestData();
         disCalcSingleProductMultipleUnitsTestData = genDisCalcSingleProductMultipleUnitsTestData();
         disCalcMultipleProductsTestData = genDisCalcMultipleProductsTestData();
-        debugTestData = genDebugTestData();
     }
 
     private List<AppDiscountCalculationTestData> genDisCalcSingleProductSingleUnitTestData() {
@@ -59,7 +57,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test2Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest2Name, test2Products, test2Environments));
 
@@ -77,7 +75,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test3Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.MOBILE, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest3Name, test3Products, test3Environments));
 
@@ -92,7 +90,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test4Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.CZECH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.CZECH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest4Name, test4Products, test4Environments));
 
@@ -107,7 +105,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test5Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest5Name, test5Products, test5Environments));
 
@@ -126,7 +124,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test6Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+            add(new TestEnvironment(Platform.MOBILE, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest6Name, test6Products, test6Environments));
 
@@ -162,7 +160,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test8Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest8Name, test8Products, test8Environments));
 
@@ -194,7 +192,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test9Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest9Name, test9Products, test9Environments));
 
@@ -214,7 +212,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test10Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest10Name, test10Products, test10Environments));
 
@@ -246,7 +244,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test11Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest11Name, test11Products, test11Environments));
 
@@ -328,7 +326,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test14Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.CZECH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.CZECH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest14Name, test14Products, test14Environments));
 
@@ -408,7 +406,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test16Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.ENGLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest16Name, test16Products, test16Environments));
 
@@ -446,7 +444,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test17Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest17Name, test17Products, test17Environments));
 
@@ -490,7 +488,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test18Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest18Name, test18Products, test18Environments));
 
@@ -662,6 +660,7 @@ public class AppTestDataHolder extends TestDataHolder {
                     .part(Product.builder()
                             .positionName("Margherita")
                             .ingredientExtra("Chicken Strips")
+                            .ingredientExtra("Chicken Strips")
                             .build())
                     .part(Product.builder()
                             .positionName("Dunkles Weizen")
@@ -736,62 +735,18 @@ public class AppTestDataHolder extends TestDataHolder {
                     .build());
         }};
         List<TestEnvironment> test21Environments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
             add(new TestEnvironment(Platform.MOBILE, Browser.GOOGLE_CHROME, AppLanguage.CZECH));
-            add(new TestEnvironment(Platform.WINDOWS, Browser.FIREFOX, AppLanguage.ENGLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.FIREFOX, AppLanguage.ENGLISH));
             add(new TestEnvironment(Platform.MOBILE, Browser.FIREFOX, AppLanguage.DEUTSCH));
-            add(new TestEnvironment(Platform.WINDOWS, Browser.OPERA, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.OPERA, AppLanguage.POLISH));
             add(new TestEnvironment(Platform.MOBILE, Browser.OPERA, AppLanguage.DEUTSCH));
-            add(new TestEnvironment(Platform.WINDOWS, Browser.MICROSOFT_EDGE, AppLanguage.POLISH));
+            add(new TestEnvironment(Platform.DESKTOP, Browser.MICROSOFT_EDGE, AppLanguage.POLISH));
             add(new TestEnvironment(Platform.MOBILE, Browser.MICROSOFT_EDGE, AppLanguage.CZECH));
             add(new TestEnvironment(Platform.MOBILE, Browser.APPLE_SAFARI, AppLanguage.ENGLISH));
             add(new TestEnvironment(Platform.MOBILE, Browser.APPLE_SAFARI, AppLanguage.CZECH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest21Name, test21Products, test21Environments));
-
-        return testData;
-    }
-
-    private List<AppDiscountCalculationTestData> genDebugTestData() {
-        List<AppDiscountCalculationTestData> testData = new ArrayList<>();
-
-        String baseTestName = "debugTest";
-        List<ProductDto> testProducts = new ArrayList<>() {{
-           add(Product.builder()
-                    .productType(ProductType.PIZZA)
-                    .positionName("Margherita")
-
-                    .size("mittel")
-                    .ingredientExtra("Ananas")
-
-                    .totalPrice(9.90)
-                    .build());
-            add(Set.builder()
-                    .positionName("Pizza für 2 Sparmenü 2")
-
-                    .part(Product.builder()
-                            .positionName("Rindersalami")
-                            .dipExtra("Hot-Chili-Dip")
-                            .dipExtra("Hot-Chili-Dip")
-                            .build())
-                    .part(Product.builder()
-                            .positionName("Rindersalami & Champinions")
-                            .ingredientExtra("Gorgonzola")
-                            .build())
-                    .part(Product.builder()
-                            .positionName("Helles Bier")
-                            .build())
-                    .part(Product.builder()
-                            .positionName("Pils")
-                            .build())
-
-                    .totalPrice(28.30)
-                    .build());
-        }};
-        List<TestEnvironment> testEnvironments = new ArrayList<>() {{
-            add(new TestEnvironment(Platform.MOBILE, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
-        }};
-        testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTestName, testProducts, testEnvironments));
 
         return testData;
     }
@@ -806,7 +761,6 @@ public class AppTestDataHolder extends TestDataHolder {
         allTestData.addAll(disCalcSingleProductSingleUnitTestData);
         allTestData.addAll(disCalcSingleProductMultipleUnitsTestData);
         allTestData.addAll(disCalcMultipleProductsTestData);
-        //allTestData.addAll(debugTestData);
 
         for (AppDiscountCalculationTestData testData : allTestData) {
             if (testData.browser == browser) {

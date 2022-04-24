@@ -1,16 +1,13 @@
 package com.Chayka.pageobjects;
 
+import com.Chayka.AppUITestConfig;
 import com.Chayka.commons.Platform;
 import com.Chayka.enums.AppLanguage;
 import com.Chayka.enums.ProductType;
-import com.Chayka.productdto.Product;
-import com.Chayka.productdto.Set;
 import com.codeborne.selenide.*;
-import com.codeborne.selenide.ex.ElementNotFound;
 import lombok.Getter;
 import lombok.NonNull;
 import org.jetbrains.annotations.NotNull;
-import org.openqa.selenium.Dimension;
 import com.Chayka.productdto.ProductDto;
 
 import java.util.List;
@@ -26,18 +23,19 @@ import static com.Chayka.enums.UiElement.*;
  * Page Object that represents mobile version of main page of the application
  */
 @Getter
-public class MainPageMobile implements MainPage {
-    private AppLanguage currentLanguage;
-    private boolean isPickUpOptionChosen;
-
+public class MainPageMobile extends MainPage {
     private final SelenideElement menuToggleButton;
     private final ElementsCollection menuSectionsButtons;
 
     public MainPageMobile() {
         currentLanguage = AppLanguage.DEUTSCH;
+        isPickUpOptionChosen = false;
 
         menuToggleButton = $(byClassName("menu-toggle-btn"));
-        menuSectionsButtons = $(byId("category-slider")).$(byClassName("swiper-wrapper")).$$(byClassName("swiper-slide"));
+        menuSectionsButtons =
+                $(byId("category-slider"))
+                        .$(byClassName("swiper-wrapper"))
+                        .$$(byClassName("swiper-slide"));
     }
 
     /**
@@ -47,30 +45,28 @@ public class MainPageMobile implements MainPage {
      * @return Page Object of opened main page
      */
     public static MainPageMobile switchToMobileVer() {
-        WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(700, 800));
+        WebDriverRunner.getWebDriver().manage().window()
+                .setSize(AppUITestConfig.getUniqueInstance().getMobileVerWindowSize());
         return new MainPageMobile();
     }
 
-    /**
-     * Closes doc that informs user that shop is currently closed if one is presented
-     */
-    public void closeWeHaveJustClosedDoc() {
-        closeWeHaveJustClosedDoc(currentLanguage);
-    }
-
+    @Override
     public void switchLanguage(@NonNull AppLanguage language) {
         if (menuToggleButton.$(byClassName("mdi")).has(cssClass("mdi-menu"))) {
             menuToggleButton.click();
         }
-        SelenideElement switchLanguageMenuButton = $(byClassName("LanguageSwitcherMobile_LanguageSwitcherMobile__fPLX0"));
+        SelenideElement switchLanguageMenuButton =
+                $(byClassName(LANGUAGE_SWITCHER.getClassName(Platform.MOBILE)));
         switchLanguageMenuButton.shouldBe(visible);
         switchLanguageMenuButton.click();
 
-        ElementsCollection switchLanguageButtons = $$(byClassName("LanguageSwitcherMobile_item__2bTMG"));
+        ElementsCollection switchLanguageButtons =
+                $$(byClassName(LANGUAGE_SWITCHER_BUTTON.getClassName(Platform.MOBILE)));
         switchLanguageButtons.findBy(text(language.getMobileButtonName())).click();
         currentLanguage = language;
     }
 
+    @Override
     public void chooseMenuSection(@NonNull ProductType productType) {
         Selenide.refresh();
 
@@ -83,88 +79,20 @@ public class MainPageMobile implements MainPage {
         }
     }
 
-    public void addProductToCart(@NonNull ProductDto product,
-                                 @NonNull Platform platform) {
-        chooseMenuSection(product.getProductType());
+    @Override
+    public void addProductToCart(@NonNull ProductDto product) {
+        addProductToCart(product, Platform.MOBILE);
+    }
 
-        if (product instanceof Set) {
-            ElementsCollection productsButtons =
-                    //$(byId("main-products-wrapper"))
-                            //.
-            $$(byClassName("product-wrapper"));
-            SelenideElement productButton = productsButtons.findBy(text(product.getPositionName()));
-            while (!productButton.exists()) {
-                productsButtons.last().scrollIntoView(true);
-            }
-            productButton.scrollIntoView(true);
-            productButton.click();
-
-            closeTellUsYourAddressBlockWithPickupOption(currentLanguage, platform);
-            if (!isPickUpOptionChosen) {
-                isPickUpOptionChosen = true;
-                productButton.click();
-            }
-
-            //chooseSetOption((Set) product, currentLanguage);
-            chooseSet((Set) product, currentLanguage, platform);
-        } else {
-            ElementsCollection productsButtons =
-                    //$(byId("main-products-wrapper"))
-                            //.
-            $$(byClassName("product-small-picture-container"));
-            SelenideElement productButton = productsButtons.findBy(text(product.getPositionName()));
-            while (!productButton.exists()) {
-                productsButtons.last().scrollIntoView(true);
-            }
-            productButton.scrollIntoView(true);
-            productButton.click();
-
-            closeTellUsYourAddressBlockWithPickupOption(currentLanguage, platform);
-            if(!isPickUpOptionChosen){
-                isPickUpOptionChosen = true;
-            }
-        }
-
-        SelenideElement productOptionsBlock = $(byClassName(PRODUCT_OPTIONS_BLOCK.getClassName(platform)));
-        launchDelay();
-        if (productOptionsBlock.isDisplayed()) {
-            SelenideElement confirmButton = productOptionsBlock
-                    .$(byClassName(PRODUCT_OPTIONS_CONFIRM_BUTTON.getClassName(platform)));
-            chooseProductOptions((Product)product, productOptionsBlock, currentLanguage, Platform.MOBILE);
-            confirmButton.click();
+    @Override
+    public void addProductsToCart(@NonNull List<ProductDto> products) {
+        for (ProductDto product : products) {
+            addProductToCart(product, Platform.MOBILE);
         }
     }
 
+    @Override
     public void checkDiscount(@NonNull List<ProductDto> products, @NotNull Double discountAsDecimal) {
-        SelenideElement shoppingCartBlock = $(byId("shopping-cart-panel"));
-        shoppingCartBlock.click();
-
-        Integer discountAsPercents = (int) (discountAsDecimal * 100);
-        SelenideElement orderTotalInfo = $(byId("basket-component")).$(byId("order-total"));
-        orderTotalInfo.scrollIntoView(false);
-        orderTotalInfo.$(byClassName("discount")).shouldHave(text(discountAsPercents + "%"));
-
-        Double expectedTotalPrice = 0.0;
-        Double expectedDiscount = 0.0;
-        for (ProductDto product : products) {
-            expectedTotalPrice += product.getTotalPrice();
-            if (product.isDiscounted()) {
-                expectedDiscount += product.getTotalPrice();
-            }
-        }
-        expectedDiscount = Math.floor(expectedDiscount * discountAsDecimal * 100.0) / 100.0;
-        String expectedDiscountAsString = String.format("%.2f", expectedDiscount);
-        orderTotalInfo
-                .$(byClassName("discount"))
-                .$(byClassName("value"))
-                .shouldHave(exactText("-" + expectedDiscountAsString + " €"));
-
-        double expectedTotalPriceWithDiscount =
-                Math.floor((expectedTotalPrice - expectedDiscount) * 100.0) / 100.0;
-        String expectedTotalPriceWithDiscountAsString = String.format("%.2f", expectedTotalPriceWithDiscount);
-        orderTotalInfo
-                .$(byClassName("total-price"))
-                .$(byClassName("value"))
-                .shouldHave(text(expectedTotalPriceWithDiscountAsString + " €"));
+        checkDiscount(products, discountAsDecimal, Platform.MOBILE);
     }
 }

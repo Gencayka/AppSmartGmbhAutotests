@@ -46,7 +46,7 @@ public class UIEdgeTests extends UITests {
 
         mainPage.switchLanguage(appLanguage);
 
-        mainPage.addProductsToCart(products, platform);
+        mainPage.addProductsToCart(products);
         mainPage.checkDiscount(products, 0.1);
 
         logger.info("Test completed successfully");
