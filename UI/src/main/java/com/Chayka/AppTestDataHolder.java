@@ -23,11 +23,13 @@ public class AppTestDataHolder extends TestDataHolder {
     private final List<AppDiscountCalculationTestData> disCalcSingleProductSingleUnitTestData;
     private final List<AppDiscountCalculationTestData> disCalcSingleProductMultipleUnitsTestData;
     private final List<AppDiscountCalculationTestData> disCalcMultipleProductsTestData;
+    private final List<AppDiscountCalculationTestData> debugTestData;
 
     public AppTestDataHolder() {
         disCalcSingleProductSingleUnitTestData = genDisCalcSingleProductSingleUnitTestData();
         disCalcSingleProductMultipleUnitsTestData = genDisCalcSingleProductMultipleUnitsTestData();
         disCalcMultipleProductsTestData = genDisCalcMultipleProductsTestData();
+        debugTestData = genDebugTestData();
     }
 
     private List<AppDiscountCalculationTestData> genDisCalcSingleProductSingleUnitTestData() {
@@ -132,9 +134,9 @@ public class AppTestDataHolder extends TestDataHolder {
         List<ProductDto> test7Products = new ArrayList<>() {{
             add(Set.builder()
                     .positionName("Long Ranch-Master Menu")
-
-                    .setOption("Coca Cola Light")
-
+                    .part(Product.builder()
+                            .positionName("Coca Cola Light")
+                            .build())
                     .totalPrice(10.45)
                     .build());
         }};
@@ -148,12 +150,13 @@ public class AppTestDataHolder extends TestDataHolder {
             add(Set.builder()
                     .positionName("Kiddy-Box Burger")
 
-                    .setOption("Hamburger")
-
-                    .toppingOptional("Ei-Patty")
-                    .toppingOptional("Ei-Patty")
-                    .toppingOptional("Ei-Patty")
-                    .sideDish("Pommes + Helles Weizen")
+                    .part(Product.builder()
+                            .positionName("Hamburger")
+                            .toppingOptional("Ei-Patty")
+                            .toppingOptional("Ei-Patty")
+                            .toppingOptional("Ei-Patty")
+                            .sideDish("Pommes + Helles Weizen")
+                            .build())
 
                     .totalPrice(14.80)
                     .build());
@@ -414,18 +417,30 @@ public class AppTestDataHolder extends TestDataHolder {
             add(Set.builder()
                     .positionName("Pizza für 2 Sparmenü 1")
 
-                    .setOption("Rindersalami & Peperoni")
-                    .setOption("Regina")
-                    .setOption("Fanta")
+                    .part(Product.builder()
+                            .positionName("Rindersalami & Peperoni")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Regina")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Fanta")
+                            .build())
 
                     .totalPrice(23.50)
                     .build());
             add(Set.builder()
                     .positionName("Pizza für 2 Sparmenü 1")
 
-                    .setOption("Rindersalami & Peperoni")
-                    .setOption("Regina")
-                    .setOption("Fanta")
+                    .part(Product.builder()
+                            .positionName("Rindersalami & Peperoni")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Regina")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Fanta")
+                            .build())
 
                     .totalPrice(23.50)
                     .build());
@@ -434,6 +449,50 @@ public class AppTestDataHolder extends TestDataHolder {
             add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
         }};
         testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest17Name, test17Products, test17Environments));
+
+        String baseTest18Name = "T18_SinglePositionSet_MultipleUnits_WithEqualOptions";
+        List<ProductDto> test18Products = new ArrayList<>() {{
+            add(Set.builder()
+                    .positionName("Pizza für 2 Sparmenü 1")
+
+                    .part(Product.builder()
+                            .positionName("Margherita")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Hawaii")
+                            .dipExtra("Sweet Chili-Dip")
+                            .dipExtra("Sweet Chili-Dip")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Fanta")
+                            .build())
+
+                    .totalPrice(25.90)
+                    .build());
+            add(Set.builder()
+                    .positionName("Pizza für 2 Sparmenü 1")
+
+                    .part(Product.builder()
+                            .positionName("Margherita")
+                            .ingredientExtra("Bacon")
+                            .ingredientExtra("Bacon")
+                            .ingredientExtra("Bacon")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Tonno")
+                            .ingredientExtra("Chili con Carne")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Fanta")
+                            .build())
+
+                    .totalPrice(33.10)
+                    .build());
+        }};
+        List<TestEnvironment> test18Environments = new ArrayList<>() {{
+            add(new TestEnvironment(Platform.WINDOWS, Browser.GOOGLE_CHROME, AppLanguage.POLISH));
+        }};
+        testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTest18Name, test18Products, test18Environments));
 
         return testData;
     }
@@ -555,24 +614,63 @@ public class AppTestDataHolder extends TestDataHolder {
             add(Set.builder()
                     .positionName("Pizza für 2 Sparmenü 2")
 
-                    .setOption("Rindersalami")
-                    .setOption("Rindersalami & Champinions")
-                    .setOption("Helles Bier")
-                    .setOption("Pils")
+                    .part(Product.builder()
+                            .positionName("Rindersalami")
+                            .dipExtra("Hot-Chili-Dip")
+                            .dipExtra("Hot-Chili-Dip")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Rindersalami & Champinions")
+                            .ingredientExtra("Gorgonzola")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Helles Bier")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Pils")
+                            .build())
 
-                    .isDiscounted(false)
-                    .totalPrice(23.50)
+                    .totalPrice(28.30)
                     .build());
             add(Set.builder()
                     .positionName("Pizza für 2 Sparmenü 2")
 
-                    .setOption("Funghi")
-                    .setOption("Margherita")
-                    .setOption("Dunkles Weizen")
-                    .setOption("Helles Weizen")
+                    .part(Product.builder()
+                            .positionName("Rindersalami")
+                            .dipExtra("Hot-Chili-Dip")
+                            .dipExtra("Hot-Chili-Dip")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Rindersalami & Champinions")
+                            .ingredientExtra("Gorgonzola")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Helles Bier")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Pils")
+                            .build())
 
-                    .isDiscounted(false)
-                    .totalPrice(23.50)
+                    .totalPrice(28.30)
+                    .build());
+            add(Set.builder()
+                    .positionName("Pizza für 2 Sparmenü 2")
+
+                    .part(Product.builder()
+                            .positionName("Funghi")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Margherita")
+                            .ingredientExtra("Chicken Strips")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Dunkles Weizen")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Helles Weizen")
+                            .build())
+
+                    .totalPrice(28.30)
                     .build());
             add(Product.builder()
                     .productType(ProductType.ICE_CREAM)
@@ -654,6 +752,50 @@ public class AppTestDataHolder extends TestDataHolder {
         return testData;
     }
 
+    private List<AppDiscountCalculationTestData> genDebugTestData() {
+        List<AppDiscountCalculationTestData> testData = new ArrayList<>();
+
+        String baseTestName = "debugTest";
+        List<ProductDto> testProducts = new ArrayList<>() {{
+           add(Product.builder()
+                    .productType(ProductType.PIZZA)
+                    .positionName("Margherita")
+
+                    .size("mittel")
+                    .ingredientExtra("Ananas")
+
+                    .totalPrice(9.90)
+                    .build());
+            add(Set.builder()
+                    .positionName("Pizza für 2 Sparmenü 2")
+
+                    .part(Product.builder()
+                            .positionName("Rindersalami")
+                            .dipExtra("Hot-Chili-Dip")
+                            .dipExtra("Hot-Chili-Dip")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Rindersalami & Champinions")
+                            .ingredientExtra("Gorgonzola")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Helles Bier")
+                            .build())
+                    .part(Product.builder()
+                            .positionName("Pils")
+                            .build())
+
+                    .totalPrice(28.30)
+                    .build());
+        }};
+        List<TestEnvironment> testEnvironments = new ArrayList<>() {{
+            add(new TestEnvironment(Platform.MOBILE, Browser.GOOGLE_CHROME, AppLanguage.DEUTSCH));
+        }};
+        testData.addAll(genDisCalcTestDataWithDifEnvironments(baseTestName, testProducts, testEnvironments));
+
+        return testData;
+    }
+
     /**
      * Gathers all the test cases in data holder together and returns only those that
      * runs on the specific browser
@@ -664,6 +806,7 @@ public class AppTestDataHolder extends TestDataHolder {
         allTestData.addAll(disCalcSingleProductSingleUnitTestData);
         allTestData.addAll(disCalcSingleProductMultipleUnitsTestData);
         allTestData.addAll(disCalcMultipleProductsTestData);
+        //allTestData.addAll(debugTestData);
 
         for (AppDiscountCalculationTestData testData : allTestData) {
             if (testData.browser == browser) {

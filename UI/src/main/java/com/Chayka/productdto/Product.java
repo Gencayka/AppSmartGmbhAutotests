@@ -13,9 +13,11 @@ import java.util.List;
 @Builder
 @Getter
 public class Product implements ProductDto{
-    @NonNull ProductType productType;
+    @Builder.Default
+    ProductType productType = ProductType.PIZZA;
     @NonNull String positionName;
-    @NonNull Double totalPrice;
+    @Builder.Default
+    Double totalPrice = 0.0;
     @Builder.Default
     boolean isDiscounted = true;
     String size;

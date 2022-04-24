@@ -40,11 +40,11 @@ public class UIChromeTests extends UITests {
         open("");
 
         MainPage mainPage = setup(platform);
-        mainPage.openingHoursCheck();
+        mainPage.openingHoursCheck(platform);
 
         mainPage.switchLanguage(appLanguage);
 
-        mainPage.addProductsToCart(products);
+        mainPage.addProductsToCart(products, platform);
         mainPage.checkDiscount(products, 0.1);
 
         logger.info("Test completed successfully");

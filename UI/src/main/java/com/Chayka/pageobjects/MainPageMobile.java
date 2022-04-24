@@ -1,7 +1,9 @@
 package com.Chayka.pageobjects;
 
+import com.Chayka.commons.Platform;
 import com.Chayka.enums.AppLanguage;
 import com.Chayka.enums.ProductType;
+import com.Chayka.productdto.Product;
 import com.Chayka.productdto.Set;
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.ex.ElementNotFound;
@@ -18,6 +20,7 @@ import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.Chayka.enums.UiElement.*;
 
 /**
  * Page Object that represents mobile version of main page of the application
@@ -80,13 +83,15 @@ public class MainPageMobile implements MainPage {
         }
     }
 
-    public void addProductToCart(@NonNull ProductDto product) {
+    public void addProductToCart(@NonNull ProductDto product,
+                                 @NonNull Platform platform) {
         chooseMenuSection(product.getProductType());
 
         if (product instanceof Set) {
             ElementsCollection productsButtons =
-                    $(byId("main-products-wrapper"))
-                            .$$(byClassName("product-wrapper"));
+                    //$(byId("main-products-wrapper"))
+                            //.
+            $$(byClassName("product-wrapper"));
             SelenideElement productButton = productsButtons.findBy(text(product.getPositionName()));
             while (!productButton.exists()) {
                 productsButtons.last().scrollIntoView(true);
@@ -94,17 +99,19 @@ public class MainPageMobile implements MainPage {
             productButton.scrollIntoView(true);
             productButton.click();
 
-            closeTellUsYourAddressBlockWithPickupOption(currentLanguage);
+            closeTellUsYourAddressBlockWithPickupOption(currentLanguage, platform);
             if (!isPickUpOptionChosen) {
                 isPickUpOptionChosen = true;
                 productButton.click();
             }
 
-            chooseSetOption((Set) product, currentLanguage);
+            //chooseSetOption((Set) product, currentLanguage);
+            chooseSet((Set) product, currentLanguage, platform);
         } else {
             ElementsCollection productsButtons =
-                    $(byId("main-products-wrapper"))
-                            .$$(byClassName("product-small-picture-container"));
+                    //$(byId("main-products-wrapper"))
+                            //.
+            $$(byClassName("product-small-picture-container"));
             SelenideElement productButton = productsButtons.findBy(text(product.getPositionName()));
             while (!productButton.exists()) {
                 productsButtons.last().scrollIntoView(true);
@@ -112,22 +119,18 @@ public class MainPageMobile implements MainPage {
             productButton.scrollIntoView(true);
             productButton.click();
 
-            closeTellUsYourAddressBlockWithPickupOption(currentLanguage);
+            closeTellUsYourAddressBlockWithPickupOption(currentLanguage, platform);
             if(!isPickUpOptionChosen){
                 isPickUpOptionChosen = true;
             }
         }
 
-        SelenideElement productOptionsBlock = $(byClassName("ant-modal"));
-        Configuration.timeout = 500;
-        try {
-            productOptionsBlock.exists();
-        } catch (ElementNotFound ignore){}
-        Configuration.timeout = 4000;
-
+        SelenideElement productOptionsBlock = $(byClassName(PRODUCT_OPTIONS_BLOCK.getClassName(platform)));
+        launchDelay();
         if (productOptionsBlock.isDisplayed()) {
-            SelenideElement confirmButton = productOptionsBlock.$(byClassName("positive-action"));
-            chooseProductOptions(product, productOptionsBlock, currentLanguage);
+            SelenideElement confirmButton = productOptionsBlock
+                    .$(byClassName(PRODUCT_OPTIONS_CONFIRM_BUTTON.getClassName(platform)));
+            chooseProductOptions((Product)product, productOptionsBlock, currentLanguage, Platform.MOBILE);
             confirmButton.click();
         }
     }

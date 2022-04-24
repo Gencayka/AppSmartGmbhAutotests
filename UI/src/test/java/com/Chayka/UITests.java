@@ -19,8 +19,9 @@ public abstract class UITests extends AbstractTestNGSpringContextTests {
     protected AppTestDataHolder testDataHolder;
 
     @BeforeSuite
-    public void beforeSuite(){
-        //Configuration.timeout = 1000;
+    public void beforeSuite() throws Exception {
+        super.springTestContextPrepareTestInstance();
+        Configuration.timeout = AppUITestConfig.getUniqueInstance().getDefaultTimeoutLength();
     }
 
     @AfterMethod
